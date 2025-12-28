@@ -1,0 +1,36 @@
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Sidebar from "./Sidebar/Sidebar";
+import ProductManager from "./Product Manager/ProductManager";
+import Login from "./Admin Auth/Login";
+import Dashboard from "./Dashboard";
+import DashboardProducts from "./Product Manager/DashboardProducts";
+import DashboardProudctDetail from "./Product Manager/DashboardProudctDetail";
+import Editdashproduct from "./Product Manager/Editdashproduct";
+import Alluserorder from "./Product Manager/Alluserorder";
+import Vieworders from "./Product Manager/Vieworders";
+import ProductDetail from "./Product Manager/ProductDetail";
+
+function App() {
+  return (
+    <div className="flex h-screen bg-gray-100">
+      <Sidebar />
+
+      <main className="flex-1 p-6 overflow-y-auto">
+        <Routes>
+          <Route path="/login" element={<Login />}> </Route>
+          <Route path="/" element={<Dashboard />}> </Route>
+          <Route path="/productmanager" element={<ProductManager />} />
+          <Route path="/single/:productId" element={<ProductDetail />} />
+          <Route path="/dashboardproducts" element={<DashboardProducts />} />
+          <Route path="/dashboardproductdetail/:id" element={<DashboardProudctDetail />} />
+          <Route path="/dashboard/product/update/:id" element={<Editdashproduct />} />
+          <Route path="/alluserorders" element={<Alluserorder />} />
+          <Route path="/api/payment/admin/user/:userId/orders" element={<Vieworders />} />
+        </Routes>
+      </main>
+    </div>
+  );
+}
+
+export default App;
