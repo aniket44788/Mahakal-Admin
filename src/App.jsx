@@ -10,6 +10,7 @@ import Editdashproduct from "./Product Manager/Editdashproduct";
 import Alluserorder from "./Product Manager/Alluserorder";
 import Vieworders from "./Product Manager/Vieworders";
 import ProductDetail from "./Product Manager/ProductDetail";
+import Getrecentorders from "./Product Manager/Getrecentorders.jsx";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/dashboard/product/update/:id" element={<Editdashproduct />} />
           <Route path="/alluserorders" element={<Alluserorder />} />
           <Route path="/api/payment/admin/user/:userId/orders" element={<Vieworders />} />
+
+          <Route path="/getrecentorders" element={<Getrecentorders />} />
         </Routes>
       </main>
     </div>

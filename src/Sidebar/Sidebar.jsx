@@ -32,6 +32,12 @@ function Sidebar() {
                 >
                     All User Orders
                 </Link>
+                <Link
+                    to="/getrecentorders"
+                    className="px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+                >
+                   Get recents orders
+                </Link>
             </nav>
         </aside>
     );
