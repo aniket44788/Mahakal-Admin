@@ -154,7 +154,7 @@ const ProductManager = () => {
       setLoading(true);
       const body = buildFormData();
       await axios.patch(
-        `${import.meta.env.VITE_URL}/update/${editingProduct._id}`,
+        `${import.meta.env.VITE_URL}/products/update/${editingProduct._id}`,
         body,
         { headers }
       );
