@@ -186,11 +186,10 @@ const AdminAllUsers = () => {
                       {/* Verified */}
                       <td className="px-5 py-4 text-center align-middle">
                         <span
-                          className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-[11px] font-semibold ${
-                            user.isVerified
+                          className={`inline-flex items-center justify-center rounded-full px-3 py-1 text-[11px] font-semibold ${user.isVerified
                               ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                               : "bg-rose-50 text-rose-700 border border-rose-200"
-                          }`}
+                            }`}
                         >
                           {user.isVerified ? "Verified" : "Not Verified"}
                         </span>

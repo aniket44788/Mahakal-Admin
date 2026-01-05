@@ -97,6 +97,36 @@ const Vieworders = () => {
         }
     };
 
+    const downloadInvoice = async (orderId) => {
+        try {
+            const response = await axios.get(
+                `${import.meta.env.VITE_URL}/api/payment/admin/order/${orderId}/invoice`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                    responseType: "blob", // 👈 IMPORTANT
+                }
+            );
+
+            const blob = new Blob([response.data], { type: "application/pdf" });
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = `Invoice-${orderId}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+
+            link.remove();
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            console.error("Invoice download error:", err);
+            alert("Failed to download invoice");
+        }
+    };
+
+
     const toggleDetails = (orderId) => {
         setExpandedOrderId(expandedOrderId === orderId ? null : orderId);
     };
@@ -149,6 +179,7 @@ const Vieworders = () => {
                         <table className="w-full table-auto">
                             <thead className="bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
                                 <tr>
+
                                     <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Order ID</th>
                                     <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Customer</th>
                                     <th className="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wider">Products</th>
@@ -168,6 +199,7 @@ const Vieworders = () => {
                                                     {order._id.slice(-10)}
                                                 </span>
                                             </td>
+
                                             <td className="px-6 py-4">
                                                 <div className="text-sm">
                                                     <div className="font-semibold text-gray-900">{order.address.fullName}</div>
@@ -217,6 +249,15 @@ const Vieworders = () => {
                                                 >
                                                     {expandedOrderId === order._id ? 'Hide' : 'View'}
                                                 </button>
+
+                                                {order.paymentStatus === "paid" && order.invoicePath && (
+                                                    <button
+                                                        onClick={() => downloadInvoice(order._id)}
+                                                        className="bg-green-600 text-white px-3 py-1 rounded-md text-xs font-bold hover:bg-green-700"
+                                                    >
+                                                        Download Invoice
+                                                    </button>
+                                                )}
                                                 <select
                                                     value={order.deliveryStatus}
                                                     onChange={(e) => updateOrderStatus(order._id, e.target.value)}
