@@ -50,14 +50,14 @@ function AdminLogin() {
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Admin Login</h2>
                     <p className="text-sm text-gray-500">Enter your credentials to access the admin panel</p>
 
-                 
+
                 </div>
 
                 {message && (
                     <div
                         className={`p-4 rounded-lg border ${message.type === "success"
-                                ? "bg-green-50 border-green-200 text-green-800"
-                                : "bg-red-50 border-red-200 text-red-800"
+                            ? "bg-green-50 border-green-200 text-green-800"
+                            : "bg-red-50 border-red-200 text-red-800"
                             }`}
                     >
                         {message.text}
