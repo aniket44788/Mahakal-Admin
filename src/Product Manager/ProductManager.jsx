@@ -179,7 +179,7 @@ const ProductManager = () => {
 
     try {
       setLoading(true);
-      await axios.delete(`${import.meta.env.VITE_URL}/delete/${productId}`, {
+      await axios.delete(`${import.meta.env.VITE_URL}/products/delete/${productId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setSuccess("Product deleted successfully!");
