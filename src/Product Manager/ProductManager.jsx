@@ -127,7 +127,7 @@ const ProductManager = () => {
       setLoading(true);
       const body = buildFormData();
       await axios.post(
-        `${import.meta.env.VITE_URL}/product/createproduct`,
+        `${import.meta.env.VITE_URL}/products/createproduct`,
         body,
         { headers }
       );
